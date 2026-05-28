@@ -154,22 +154,45 @@
 <body>
     <nav class="navbar navbar-expand-lg sticky-top py-3">
         <div class="container">
-            <a class="navbar-brand" href="Home.php"><i class="fas fa-shoe-prints"></i> SoleStyle</a>
+            <a class="navbar-brand" href="/client/index.php?page=home">
+                <i class="fas fa-shoe-prints"></i> SoleStyle
+            </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <a class="navbar-brand" href="index.php?page=home">SoleStyle</a>
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item"><a class="nav-link" href="index.php?page=home">Trang chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?page=list">Sản phẩm</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?page=cart">Giỏ hàng</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?page=login">Đăng nhập</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?page=register">Đăng ký</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?page=profile">Tài khoản</a></li>
-                    </ul>
-                    <a href="index.php?page=cart" class="btn btn-outline-red rounded-pill">Giỏ hàng</a>
+
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/client/index.php?page=home">Trang chủ</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/client/index.php?page=list">Sản phẩm</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/client/index.php?page=cart">Giỏ hàng</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/client/index.php?page=login">Đăng nhập</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/client/index.php?page=register">Đăng ký</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/client/index.php?page=profile">Tài khoản</a>
+                    </li>
+                </ul>
+
+                <a href="/client/index.php?page=cart" class="btn btn-outline-red rounded-pill">
+                    Giỏ hàng
+                </a>
 
             </div>
         </div>
