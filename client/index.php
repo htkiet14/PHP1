@@ -63,5 +63,6 @@ switch ($page) {
 }
 
 // Load giao diện footer
+
 require "views/layouts/Footer.php";
 ?>

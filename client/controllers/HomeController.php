@@ -4,3 +4,4 @@ class HomeController {
         require "views/pages/Home.php";
     }
 }
+// 

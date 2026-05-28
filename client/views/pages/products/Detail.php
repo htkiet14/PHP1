@@ -42,4 +42,5 @@ if (!$product) {
         <h4 class="section-title">Mô tả chi tiết</h4>
         <p><?= $product['description'] ?> Sản phẩm còn <?= $product['stock'] ?> chiếc trong kho.</p>
     </div>
+    <!--  -->
 </div>

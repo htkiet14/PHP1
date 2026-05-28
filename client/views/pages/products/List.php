@@ -39,4 +39,5 @@ if (!is_array($products)) {
             </div>
         </div>
     </div>
+    <!--  -->
 </div>

@@ -34,5 +34,5 @@ $featured = array_slice($products, 0, 4, true);
             <?php endif; ?>
         </div>
     </div>
-    <!-- Các phần khác giữ nguyên -->
+     
 </div>

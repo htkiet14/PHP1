@@ -1,5 +1,4 @@
 <?php
-// Giả lập giỏ hàng với 2 sản phẩm mẫu (từ mảng products)
 $products = require __DIR__ . '/../../config/products.php';
 if (!is_array($products)) {
     $products = [];

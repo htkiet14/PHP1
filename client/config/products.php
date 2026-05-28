@@ -101,3 +101,4 @@ $products = [
 
 return $products;
 ?>
+<!--  -->

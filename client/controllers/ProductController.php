@@ -8,3 +8,4 @@ class ProductController {
         require "views/pages/products/Detail.php";
     }
 }
+// 

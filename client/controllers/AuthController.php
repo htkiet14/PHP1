@@ -12,3 +12,4 @@ class AuthController {
         require "views/pages/Profile.php";
     }
 }
+// 
