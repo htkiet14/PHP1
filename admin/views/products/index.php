@@ -1,138 +1,85 @@
-<div class="main">
+<div class="container mt-4">
 
-    <div class="card p-4">
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Quản lý sản phẩm</h2>
 
-        <div class="d-flex justify-content-between align-items-center mb-3">
+    <a href="?act=add" class="btn btn-success">
+        Thêm sản phẩm
+    </a>
+</div>
 
-            <h3>Quản lý sản phẩm</h3>
+<div class="card shadow">
 
-            <button class="btn btn-primary">
-                Thêm sản phẩm
-            </button>
+    <div class="card-header bg-primary text-white">
+        Danh sách sản phẩm
+    </div>
 
-        </div>
+    <div class="card-body">
 
-
-        <table class="table table-bordered table-hover text-center align-middle">
+        <table class="table table-bordered table-hover align-middle text-center">
 
             <thead class="table-dark">
-
                 <tr>
-
                     <th>ID</th>
-
-                    <th>Hình ảnh</th>
-
+                    <th>Ảnh</th>
                     <th>Tên sản phẩm</th>
-
                     <th>Giá</th>
-
                     <th>Danh mục</th>
-
-                    <th>Chức năng</th>
-
+                    <th width="180">Thao tác</th>
                 </tr>
-
             </thead>
-
 
             <tbody>
 
-                <tr>
-
-                    <td>1</td>
-
-                    <td>
-                        <img src="https://via.placeholder.com/80"
-                        class="rounded">
-                    </td>
-
-                    <td>Giày Nike Air</td>
-
-                    <td>500.000đ</td>
-
-                    <td>Giày thể thao</td>
-
-                    <td>
-
-                        <button class="btn btn-warning btn-sm">
-                            Sửa
-                        </button>
-
-                        <button class="btn btn-danger btn-sm">
-                            Xóa
-                        </button>
-
-                    </td>
-
-                </tr>
-
-
+            <?php foreach ($danhSachSanPham as $sp): ?>
 
                 <tr>
 
-                    <td>2</td>
+                    <td><?= $sp['id'] ?></td>
 
                     <td>
-                        <img src="https://via.placeholder.com/80"
-                        class="rounded">
+                        <img src="uploads/<?= $sp['image'] ?>"
+                             width="80"
+                             class="img-thumbnail">
                     </td>
 
-                    <td>Giày Adidas</td>
+                    <td class="text-start fw-bold">
+                        <?= $sp['name'] ?>
+                    </td>
 
-                    <td>700.000đ</td>
-
-                    <td>Giày thể thao</td>
+                    <td class="text-danger fw-bold">
+                        <?= number_format($sp['price'],0,',','.') ?>đ
+                    </td>
 
                     <td>
+                        <span class="badge bg-info">
+                            <?= $sp['category_name'] ?? $sp['category_id'] ?>
+                        </span>
+                    </td>
 
-                        <button class="btn btn-warning btn-sm">
+                    <td>
+                        <a href="?act=edit&id=<?= $sp['id'] ?>"
+                           class="btn btn-warning btn-sm">
                             Sửa
-                        </button>
+                        </a>
 
-                        <button class="btn btn-danger btn-sm">
+                        <a href="?act=delete&id=<?= $sp['id'] ?>"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Bạn có chắc muốn xóa?')">
                             Xóa
-                        </button>
-
+                        </a>
                     </td>
 
                 </tr>
-
-
-
-                <tr>
-
-                    <td>3</td>
-
-                    <td>
-                        <img src="https://via.placeholder.com/80"
-                        class="rounded">
-                    </td>
-
-                    <td>Dép Puma</td>
-
-                    <td>300.000đ</td>
-
-                    <td>Dép</td>
-
-                    <td>
-
-                        <button class="btn btn-warning btn-sm">
-                            Sửa
-                        </button>
-
-                        <button class="btn btn-danger btn-sm">
-                            Xóa
-                        </button>
-
-                    </td>
-
-                </tr>
+            <?php endforeach; ?>
 
             </tbody>
 
         </table>
 
     </div>
+
+</div>
+```
 
 </div>
