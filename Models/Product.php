@@ -5,9 +5,6 @@ class Product {
         $this->pdo = $pdo;
     }
 
-    /**
-     * Lấy tất cả sản phẩm (kèm tên danh mục) – từ file thứ 2
-     */
     public function getAllProducts() {
         $sql = "SELECT product.*, categories.name AS category_name 
                 FROM product 
@@ -17,9 +14,6 @@ class Product {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    /**
-     * Lấy chi tiết một sản phẩm theo ID – từ file thứ 2
-     */
     public function getOneProduct($id) {
         $sql = "SELECT product.*, categories.name AS category_name 
                 FROM product 
@@ -108,6 +102,7 @@ class Product {
         $sql = "DELETE FROM product WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([$id]);
+        $stmt = $this->pdo->prepare($sql);
         $stmt = $this->pdo->prepare($sql);
         foreach ($params as $key => $val) {
             $stmt->bindValue($key+1, $val, is_int($val) ? PDO::PARAM_INT : PDO::PARAM_STR);
