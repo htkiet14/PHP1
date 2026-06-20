@@ -1,49 +1,70 @@
 <?php
-class Product
-{
+class Product {
     private $pdo;
-
-    public function __construct($pdo)
-    {
+    public function __construct($pdo) {
         $this->pdo = $pdo;
     }
 
-    public function getAllProducts()
-    {
-        $sql = "SELECT product.*, categories.name AS category_name FROM product JOIN categories ON categories.id = product.category_id;";
+    public function getAllProducts() {
+        $sql = "SELECT product.*, categories.name AS category_name 
+                FROM product 
+                JOIN categories ON categories.id = product.category_id 
+                ORDER BY product.id DESC";
         $stmt = $this->pdo->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
-    public function getOneProduct(int $id)
-    {
-        $sql = "SELECT *FROM `product` WHERE `product`.`id` = ?";
+    public function getOneProduct($id) {
+        $sql = "SELECT product.*, categories.name AS category_name 
+                FROM product 
+                JOIN categories ON categories.id = product.category_id 
+                WHERE product.id = ?";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['id' => $id]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row;
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function searchProduct($keyword){
-        $keyword = "%$keyword%"; // % là phía trước phía sau của từ khóa cũng đc
-        $sql = "SELECT *FROM `products` JOIN `products`.`title`like ?";
+    public function getProductsWithPagination($category_id = 0, $keyword = '', $limit = 6, $offset = 0) {
+        $sql = "SELECT p.*, c.name AS category_name 
+                FROM product p 
+                JOIN categories c ON p.category_id = c.id 
+                WHERE 1=1";
+        $params = [];
+        if ($category_id > 0) {
+            $sql .= " AND p.category_id = ?";
+            $params[] = (int)$category_id;
+        }
+        if (!empty($keyword)) {
+            $sql .= " AND p.name LIKE ?";
+            $params[] = "%$keyword%";
+        }
+        $sql .= " ORDER BY p.id DESC LIMIT ? OFFSET ?";
+        $params[] = (int)$limit;
+        $params[] = (int)$offset;
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['$keyword']);
+        foreach ($params as $key => $val) {
+            $stmt->bindValue($key+1, $val, is_int($val) ? PDO::PARAM_INT : PDO::PARAM_STR);
+        }
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAllCategories(){
-        $sql = "SELECT *FROM `categories`";
-        $stmt = $this->pdo->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function searchCategory($keyword){
-        $keyword = "%$keyword%"; // % là phía trước phía sau của từ khóa cũng đc
-        $sql = "SELECT *FROM `categories` JOIN `categories`.`name`like ?";
+    public function countProducts($category_id = 0, $keyword = '') {
+        $sql = "SELECT COUNT(*) FROM product WHERE 1=1";
+        $params = [];
+        if ($category_id > 0) {
+            $sql .= " AND category_id = ?";
+            $params[] = (int)$category_id;
+        }
+        if (!empty($keyword)) {
+            $sql .= " AND name LIKE ?";
+            $params[] = "%$keyword%";
+        }
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['$keyword']);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($params as $key => $val) {
+            $stmt->bindValue($key+1, $val, is_int($val) ? PDO::PARAM_INT : PDO::PARAM_STR);
+        }
+        $stmt->execute();
+        return $stmt->fetchColumn();
     }
 }
