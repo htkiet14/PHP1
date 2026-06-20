@@ -1,7 +1,6 @@
 <?php
 class Product {
     private $pdo;
-
     public function __construct($pdo) {
         $this->pdo = $pdo;
     }
@@ -109,5 +108,11 @@ class Product {
         $sql = "DELETE FROM product WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([$id]);
+        $stmt = $this->pdo->prepare($sql);
+        foreach ($params as $key => $val) {
+            $stmt->bindValue($key+1, $val, is_int($val) ? PDO::PARAM_INT : PDO::PARAM_STR);
+        }
+        $stmt->execute();
+        return $stmt->fetchColumn();
     }
 }
