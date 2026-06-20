@@ -1,46 +1,62 @@
-<div class="container mt-4">
+<div class="main">
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Quản lý danh mục</h2>
-    <a href="?act=add-category" class="btn btn-success">
-        Thêm danh mục
-    </a>
-</div>
-<div class="card shadow">
-    <div class="card-header bg-primary text-white">
-        Danh sách danh mục
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold">Quản lý danh mục</h3>
+
+        <a href="index.php?page=categories&act=add"
+           class="btn btn-success">
+            + Thêm danh mục
+        </a>
     </div>
-    <div class="card-body">
-        <table class="table table-bordered table-hover align-middle text-center">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Tên danh mục</th>
-                    <th width="180">Thao tác</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($danhSachDanhMuc as $dm): ?>
-                <tr>
-                    <td><?= $dm['id'] ?></td>
-                    <td class="fw-bold">
-                        <?= $dm['name'] ?>
-                    </td>
-                    <td>
-                        <a href="?act=edit-category&id=<?= $dm['id'] ?>"
-                           class="btn btn-warning btn-sm">
-                            Sửa
-                        </a>
-                        <a href="?act=delete-category&id=<?= $dm['id'] ?>"
-                           class="btn btn-danger btn-sm"
-                           onclick="return confirm('Bạn có chắc muốn xóa?')">
-                            Xóa
-                        </a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
+
+    <!-- Table -->
+    <div class="card p-4 shadow">
+
+        <h5 class="mb-3">Danh sách danh mục</h5>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center align-middle">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên danh mục</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                <?php foreach ($danhSachDanhMuc as $dm): ?>
+                    <tr>
+                        <td><?= $dm['id'] ?></td>
+
+                        <td class="text-start fw-bold">
+                            <?= $dm['name'] ?>
+                        </td>
+
+                        <td>
+
+                            <!-- EDIT -->
+                            <a href="index.php?page=categories&act=edit&id=<?= $dm['id'] ?>"
+                               class="btn btn-warning btn-sm me-2">
+                                Sửa
+                            </a>
+
+                            <!-- DELETE -->
+                            <a href="index.php?page=categories&act=delete&id=<?= $dm['id'] ?>"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Bạn có chắc muốn xóa?')">
+                                Xóa
+                            </a>
+
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+
+            </table>
+        </div>
+
     </div>
-</div>
 </div>
