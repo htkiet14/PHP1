@@ -8,6 +8,8 @@ error_reporting(E_ALL);
 require_once "config/database.php";
 require_once "Models/Product.php";
 require_once "Models/Category.php";
+require_once "Models/Order.php";
+require_once "Models/User.php";
 
 // =======================
 // LOAD CONTROLLERS

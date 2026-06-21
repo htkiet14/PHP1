@@ -5,6 +5,19 @@ class User {
         $this->pdo = $pdo;
     }
 
+public function getAllUsers(){
+
+    $stmt = $this->pdo->prepare(
+        "SELECT * FROM users"
+    );
+
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+
     public function findByEmail($email) {
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = ?");
         $stmt->execute([$email]);

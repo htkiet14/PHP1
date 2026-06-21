@@ -1,96 +1,114 @@
 <div class="main">
 
-    <div class="card p-4">
+    <div class="card p-4 shadow">
 
-        <h3 class="mb-4">
-            Quản lý tài khoản
-        </h3>
+        <div class="d-flex justify-content-between align-items-center mb-4">
 
+            <h3 class="mb-0">
+                Quản lý tài khoản
+            </h3>
 
-        <table class="table table-bordered table-hover text-center">
+        </div>
 
-            <thead class="table-dark">
+        <div class="table-responsive">
 
-                <tr>
+            <table class="table table-bordered table-hover align-middle text-center">
 
-                    <th>ID</th>
+                <thead class="table-dark">
 
-                    <th>Họ tên</th>
+                    <tr>
 
-                    <th>Email</th>
+                        <th>ID</th>
 
-                    <th>Vai trò</th>
+                        <th>Họ tên</th>
 
-                    <th>Chức năng</th>
+                        <th>Email</th>
 
-                </tr>
+                        <th>Vai trò</th>
 
-            </thead>
+                        <th>Chức năng</th>
 
+                    </tr>
 
-            <tbody>
+                </thead>
 
-                <tr>
+                <tbody>
 
-                    <td>1</td>
+                <?php if(!empty($users)): ?>
 
-                    <td>Admin</td>
+                    <?php foreach($users as $user): ?>
 
-                    <td>admin@gmail.com</td>
+                    <tr>
 
-                    <td>
-                        <span class="badge bg-danger">
-                            Admin
-                        </span>
-                    </td>
+                        <td>
+                            <?= $user['id'] ?>
+                        </td>
 
-                    <td>
+                        <td class="fw-bold">
+                            <?= $user['fullname'] ?>
+                        </td>
 
-                        <button class="btn btn-warning btn-sm">
-                            Sửa
-                        </button>
+                        <td>
+                            <?= $user['email'] ?>
+                        </td>
 
-                        <button class="btn btn-danger btn-sm">
-                            Xóa
-                        </button>
+                        <td>
 
-                    </td>
+                            <?php if($user['role']=="admin"): ?>
 
-                </tr>
+                                <span class="badge bg-danger px-3 py-2">
+                                    Admin
+                                </span>
 
+                            <?php else: ?>
 
+                                <span class="badge bg-primary px-3 py-2">
+                                    User
+                                </span>
 
-                <tr>
+                            <?php endif; ?>
 
-                    <td>2</td>
+                        </td>
 
-                    <td>Nguyễn Văn A</td>
+                        <td>
 
-                    <td>vana@gmail.com</td>
+                            <button
+                                class="btn btn-warning btn-sm"
+                            >
+                                Sửa
+                            </button>
 
-                    <td>
-                        <span class="badge bg-primary">
-                            User
-                        </span>
-                    </td>
+                            <button
+                                class="btn btn-danger btn-sm"
+                            >
+                                Xóa
+                            </button>
 
-                    <td>
+                        </td>
 
-                        <button class="btn btn-warning btn-sm">
-                            Sửa
-                        </button>
+                    </tr>
 
-                        <button class="btn btn-danger btn-sm">
-                            Xóa
-                        </button>
+                    <?php endforeach; ?>
 
-                    </td>
+                <?php else: ?>
 
-                </tr>
+                    <tr>
 
-            </tbody>
+                        <td colspan="5">
 
-        </table>
+                            Không có dữ liệu tài khoản
+
+                        </td>
+
+                    </tr>
+
+                <?php endif; ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 

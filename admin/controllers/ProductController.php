@@ -2,10 +2,13 @@
 class ProductController {
 
     private $productModel;
+    private $categoryModel;
+
 
     public function __construct() {
         $db = new Database();
         $this->productModel = new Product($db->Connection());
+        $this->categoryModel = new Category($db->Connection());
     }
 
     // LIST
@@ -31,6 +34,7 @@ class ProductController {
             header("Location: index.php?page=products");
             exit;
         }
+        $categories = $this->categoryModel->getAll();
 
         require "admin/views/products/add.php";
     }
@@ -38,7 +42,7 @@ class ProductController {
     public function edit() {
         $id = $_GET['id'];
         $product = $this->productModel->getOneProduct($id);
-
+        $categories = $this->categoryModel->getAll();
         if (isset($_POST['submit'])) {
 
             $name = $_POST['name'];
